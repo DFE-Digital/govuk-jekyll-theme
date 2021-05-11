@@ -1,35 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" >
   <head>
-    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Use title if it's in the page YAML frontmatter -->
     {% if page.title and page.url != "/" %}
-    <title>{{ page.title }} - {{ site.title }}</title>
+         <title>{{ page.title }} - {{ site.title }}</title>
     {% else %}
-    <title>{{ site.title | default: "GOV.UK" }}</title>
+         <title>{{ site.title | default: "GOV.UK Documentation" }}</title>
     {% endif %}
 
     <link rel="stylesheet" media="screen" href="{{ "/assets/main.css" | relative_url }}"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
 
   </head>
 
   <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+        {% include header.html %}
+      </div>
 
-    <div id="skiplink-container">
-      <div>
-        <a href="#content" class="skiplink">Skip to main content</a>
+      <div class="app-pane__content toc-open-disabled">
+        <main id="content" class="technical-documentation" data-module="anchored-headings">
+           {{ content }}
+        </main>
+        {% include footer.html %}
       </div>
     </div>
-
-    {% include header.html %}
-
-    <div id="global-header-bar"></div>
-
-    {{ content }}
-
-    {% include footer.html %}
-
   </body>
+
 </html>
